@@ -6,25 +6,23 @@ from datetime import datetime
 
 class Relogio(MDApp):
     def build(self):
-        # Definindo o layout principal com fundo preto
         self.layout = BoxLayout(orientation='vertical')
         self.layout.canvas.before.clear()
         with self.layout.canvas.before:
             from kivy.graphics import Color, Rectangle
-            Color(0, 0, 0, 1)  # Cor preta
+            Color(0, 0, 0, 1)
             self.rect = Rectangle(size=self.layout.size, pos=self.layout.pos)
             self.layout.bind(size=self._update_rect, pos=self._update_rect)
 
-        # Criando o label com fonte branca
         self.label = Label(
             text=self.get_time(),
-            font_size='64sp',  # Aumentei o tamanho da fonte
+            font_size='64sp',
             halign='center',
-            color=(1, 1, 1, 1)  # Cor branca
+            color=(1, 1, 1, 1)
         )
 
         self.layout.add_widget(self.label)
-        Clock.schedule_interval(self.update_time, 1)  # Atualiza o relógio a cada segundo
+        Clock.schedule_interval(self.update_time, 1)
         return self.layout
 
     def _update_rect(self, instance, value):
